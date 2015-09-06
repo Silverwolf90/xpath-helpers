@@ -11,6 +11,7 @@ Contains following functions
 * **firstChild**(tagName, node)
 * **lastChild**(tagName, node)
 * **descendantsWithAttributes**(tagNames, attributes, node)
+  * this is the only one which supports multiple tag names
 * **descendantById**(id, node)
 * **ancestors**(tagName, node)
 * **firstAncestor**(tagName, node)
@@ -37,11 +38,12 @@ Also... mostly untested.
 
 ## Examples
 
-```
+```javascript
 import xmldom from 'xmldom';
 
 let doc = xmldom.DOMParser().parseFromString(someXMLString);
 
+// simple usage, use * for all
 select('*', doc);
 children('section', doc);
 getById('id123', doc);
@@ -51,7 +53,7 @@ let allSections = descendants('section');
 allSections(doc);
 
 // withAttributes usage
-get
+descendantsWithAttributes('article', { rating: 10 }, doc);
 ```
 
 ## License
