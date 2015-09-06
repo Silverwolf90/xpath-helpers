@@ -1,8 +1,8 @@
 {
   "name": "xpath-helpers",
   "version": "0.0.1",
-  "description": "",
-  "main": "bundle.js",
+  "description": "Simple helpers for XPath",
+  "main": "index.js",
   "dependencies": {
     "lodash-fp": "~0.10.2",
     "xpath": "0.0.9"
