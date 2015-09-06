@@ -1,6 +1,32 @@
 ## XPath Helpers
 
-Helpers for xml traversal in JavaScript. All curried because life is better that way. Selector results are cached so that expensive selectors only cost you once.
+Contains following functions
+
+* **select**(selector, node)
+* **selectOne**(selector, node)
+* **getTagWithAttributes**(selector, attributeFilter, node)
+* **getTagsWithAttributes**(selector, attributeFilter, node)
+* **getById**(id, node)
+* **parent**(tagName, node)
+* **firstNode**(tagName, node)
+* **lastNode**(tagName, node)
+* **children**(tagName, node)
+* **firstChild**(tagName, node)
+* **lastChild**(tagName, node)
+* **descendants**(tagName, node)
+* **descendant**(tagName, node)
+* **ancestors**(tagName, node)
+* **ancestor**(tagName, node)
+* **preceding**(tagName, node)
+* **firstPreceding**(tagName, node)
+* **firstPrecedingWithAttributes**(selector, attributeFilter, node)
+* **precedingSiblings**(tagName, node)
+* **following**(tagName, node)
+* **firstFollowing**(tagName, node)
+* **firstFollowingWithAttributes**(selector, attributeFilter, node)
+* **followingSiblings**(tagName, node)
+
+Also they are all curried because life is better that way. Selector results are cached so that expensive selectors only cost you once.
 
 This is a thin wrapper around some trivial XPath string building and the [xpath](https://github.com/goto100/xpath) package. Naturally this is not as robust and raw xpath.
 
