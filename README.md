@@ -28,11 +28,11 @@ Contains following functions
 * **firstFollowingWithAttributes**(tagName, attributes, node)
 * **followingSiblings**(tagName, node)
 
-Also they are all curried because life is better that way. Selector results are cached so that expensive selectors only cost you once.
+Also they are all curried because life is better that way.
 
 This is a thin wrapper around some trivial XPath string building and the [xpath](https://github.com/goto100/xpath) package. Naturally this is not as robust and raw xpath.
 
-Performance is as you'd expect: The higher up in the document, the slower execution (how much slower is very dependent on the complexity of your selector).
+Performance is as you'd expect: The higher up in the document, the slower execution (how much slower is very dependent on the complexity of your selector). Selector results are cached so that expensive selectors only cost you once.
 
 Also... mostly untested.
 
