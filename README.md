@@ -4,15 +4,14 @@ Contains following functions
 
 * **select**(selector, node)
 * **selectOne**(selector, node)
-* **getTagWithAttributes**(tagName, attributes, node)
-* **getTagsWithAttributes**(tagNames, attributes, node)
-* **getById**(id, node)
 * **descendants**(tagName, node)
+* **firstDescendant**(tagName, node)
+* **lastDescendant**(tagName, node)
 * **children**(tagName, node)
 * **firstChild**(tagName, node)
 * **lastChild**(tagName, node)
-* **firstDescendant**(tagName, node)
-* **lastDescendant**(tagName, node)
+* **descendantsWithAttributes**(tagNames, attributes, node)
+* **descendantById**(id, node)
 * **ancestors**(tagName, node)
 * **firstAncestor**(tagName, node)
 * **lastAncestor**(tagName, node)
@@ -35,6 +34,25 @@ This is a thin wrapper around some trivial XPath string building and the [xpath]
 Performance is as you'd expect: The higher up in the document, the slower execution (how much slower is very dependent on the complexity of your selector).
 
 Also... mostly untested.
+
+## Examples
+
+```
+import xmldom from 'xmldom';
+
+let doc = xmldom.DOMParser().parseFromString(someXMLString);
+
+select('*', doc);
+children('section', doc);
+getById('id123', doc);
+
+// curried usage
+let allSections = descendants('section');
+allSections(doc);
+
+// withAttributes usage
+get
+```
 
 ## License
 

@@ -1,7 +1,8 @@
 'use strict';
 
 import xpath from 'xpath';
-import { curry, curryN, map, pairs, memoize, partialRight, flow, first, last, isNull } from 'lodash-fp';
+import { curry, curryN, map, pairs, memoize, partialRight, 
+  flow, first, last, isNull, isArray } from 'lodash-fp';
 
 const flow2 = flow(flow, curryN(2));
 const flow3 = flow(flow, curryN(3));
@@ -26,28 +27,13 @@ const attrFilter =
   ([attrName, attrValue]) =>
     `@${attrName}` + (isNull(attrValue) ? '' : `='${attrValue}'`);
 
-const makeAttrFilterString =
+const makeAttrFilter =
   (attrFilterObj) =>
     map(attrFilter, pairs(attrFilterObj)).join(AND);
 
-export const getTagWithAttributes = curry(
-  (tagName, attrFilterObj, node) => {
-    let attrFilterString = makeAttrFilterString(attrFilterObj);
-    let selector = `.//${tagName}[${attrFilterString}]`;
-    return select(selector, node);
-  });
-
-export const getTagsWithAttributes = curry(
-  (tagNames, attrFilterObj, node) => {
-    let attrFilterString = makeAttrFilterString(attrFilterObj);
-    let tagNamesString = tagNames.map(self).join(OR);
-    let selector = `.//*[(${tagNamesString}) and (${attrFilterString})]`;
-    return select(selector, node);
-  });
-
-export const getById = curry(
-  (id, node) =>
-    first(getTagWithAttributes('*', { id }, node)));
+const makeTagNamesFilter =
+  (tagNames) =>
+    tagNames.map(self).join(OR);
 
 /** Descendants */
 
@@ -67,6 +53,23 @@ export const lastChild =
 
 export const firstDescendant = firstChild;
 export const lastDescendant  = flow2(descendants, last);
+
+export const descendantsWithAttributes = curry(
+  (tagNames, attrFilterObj, node) => {
+    tagNames = isArray(tagNames) ? tagNames : [tagNames];
+
+    let attrFilter = makeAttrFilter(attrFilterObj);
+    let tagNameFilter = makeTagNamesFilter(tagNames);
+    let selector = tagNames.length === 1
+      ? `.//${first(tagNames)}[${attrFilter}]`
+      : `.//*[(${tagNameFilter}) and (${attrFilter})]`;
+
+    return select(selector, node);
+  });
+
+export const descendantById = curry(
+  (id, node) =>
+    first(descendantsWithAttributes('*', { id }, node)));
 
 /** Ancestors */
 
@@ -92,7 +95,7 @@ export const firstPreceding = flow2(preceding, first);
 
 export const precedingWithAttributes = curry(
   (tagName, attrFilterObj, node) => {
-    let attrFilterString = makeAttrFilterString(attrFilterObj);
+    let attrFilterString = makeAttrFilter(attrFilterObj);
     return selectOne(`./preceding::${tagName}[${attrFilterString}]`, node);
   });
 
@@ -112,7 +115,7 @@ export const firstFollowing = flow2(following, first);
 
 export const followingWithAttributes = curry(
   (tagName, attrFilterObj, node) => {
-    let attrFilterString = makeAttrFilterString(attrFilterObj);
+    let attrFilterString = makeAttrFilter(attrFilterObj);
     return select(`./following::${tagName}[${attrFilterString}]`, node);
   });
 
