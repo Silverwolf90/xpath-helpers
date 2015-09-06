@@ -1,0 +1,18 @@
+{
+  "name": "xpath-helpers",
+  "version": "0.0.1",
+  "description": "",
+  "main": "bundle.js",
+  "dependencies": {
+    "lodash-fp": "~0.10.2",
+    "xpath": "0.0.9"
+  },
+  "devDependencies": {
+    "eslint": "~0.21.2",
+    "babel": "~5.4.7",
+    "babel-eslint": "~3.1.9",
+    "babel-core": "~5.4.7"
+  },
+  "author": "Cyril Silverman",
+  "license": "MIT"
+}
