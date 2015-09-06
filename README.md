@@ -2,6 +2,10 @@ Helpers for xml traversal in JavaScript. All curried because life is better that
 
 This is a thin wrapper around some trivial XPath string building and the [xpath](https://github.com/goto100/xpath) package. Naturally this is not as robust and raw xpath.
 
+Performance is as you'd expect: The higher up in the document, the slower execution (how much slower is very dependent on the complexity of your selector).
+
+Also... mostly untested.
+
 The MIT License (MIT)
 
 Copyright (c) 2015 Cyril Silverman
