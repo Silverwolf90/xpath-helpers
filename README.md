@@ -44,7 +44,8 @@ import xmldom from 'xmldom';
 let doc = xmldom.DOMParser().parseFromString(someXMLString);
 
 // simple usage, use * for all
-select('*', doc);
+select('.//*', doc);
+descendants('*', doc);
 children('section', doc);
 getById('id123', doc);
 
@@ -54,6 +55,7 @@ allSections(doc);
 
 // withAttributes usage
 descendantsWithAttributes('article', { rating: 10 }, doc);
+descendantsWithAttributes(['article', 'comment'], { rating: 10 }, doc);
 ```
 
 ## License
