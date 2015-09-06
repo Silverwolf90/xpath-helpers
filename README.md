@@ -4,8 +4,8 @@ Contains following functions
 
 * **select**(selector, node)
 * **selectOne**(selector, node)
-* **getTagWithAttributes**(selector, attributeFilter, node)
-* **getTagsWithAttributes**(selector, attributeFilter, node)
+* **getTagWithAttributes**(tagName, attributeFilter, node)
+* **getTagsWithAttributes**(tagNames, attributeFilter, node)
 * **getById**(id, node)
 * **parent**(tagName, node)
 * **firstNode**(tagName, node)
@@ -19,11 +19,11 @@ Contains following functions
 * **ancestor**(tagName, node)
 * **preceding**(tagName, node)
 * **firstPreceding**(tagName, node)
-* **firstPrecedingWithAttributes**(selector, attributeFilter, node)
+* **firstPrecedingWithAttributes**(tagName, attributeFilter, node)
 * **precedingSiblings**(tagName, node)
 * **following**(tagName, node)
 * **firstFollowing**(tagName, node)
-* **firstFollowingWithAttributes**(selector, attributeFilter, node)
+* **firstFollowingWithAttributes**(tagName, attributeFilter, node)
 * **followingSiblings**(tagName, node)
 
 Also they are all curried because life is better that way. Selector results are cached so that expensive selectors only cost you once.
