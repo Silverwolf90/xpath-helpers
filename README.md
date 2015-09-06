@@ -41,7 +41,7 @@ Also... mostly untested.
 ```javascript
 import xmldom from 'xmldom';
 
-let doc = xmldom.DOMParser().parseFromString(someXMLString);
+let doc = new xmldom.DOMParser().parseFromString(someXMLString);
 
 // simple usage, use * for all
 select('.//*', doc);
