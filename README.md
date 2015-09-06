@@ -47,7 +47,7 @@ let doc = xmldom.DOMParser().parseFromString(someXMLString);
 select('.//*', doc);
 descendants('*', doc);
 children('section', doc);
-getById('id123', doc);
+descendantById('id123', doc);
 
 // curried usage
 let allSections = descendants('section');
